@@ -16,6 +16,7 @@ function load_specific_data(index_file)
 	local depth_data = npy4th.loadnpy(file_load)
 	file_load = '../dataset_stacks/' .. 'images_color_stack_' .. index_string .. '_.npy'
 	local color_data = npy4th.loadnpy(file_load)
+	print(color_data:size())
 	local x_batch = torch.Tensor(batch_size, 1, 112, 112)
 	local y_batch = torch.Tensor(batch_size, num_classes, 112, 112)
 	for t = 1,batch_size,1 do
@@ -60,5 +61,5 @@ fwd2 = model:forward(train_data:double())
 
 -- test spatial convolutions
 print("outputs size")
-print(fwd1[{1,{1,3},1,1}])
-print(fwd2[{1,{1,3},1,1}])
+print(fwd1[{1,{1,3}}])
+print(fwd2[{1,{1,3}}])
